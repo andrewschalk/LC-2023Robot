@@ -3,7 +3,7 @@ Code for the Lewis and Clark robot. Utilizes arcade drive drive train. Controlle
 ## Architecture
 The robot runs on the systems used with the FIRST Robotics Competition. Uses [WPILib](https://docs.wpilib.org/en/stable/).
 ## Electronics
-Camera is a Lifecam HD-3000.
+Camera is a Lifecam HD-3000. Primary computer is the roborio 1. 
 ### Drivetrain
 Four CIM motors each ran with a Victor SPX motor controller.
 ## Hardware
