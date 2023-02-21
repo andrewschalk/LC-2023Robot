@@ -18,7 +18,7 @@ import frc.sensors.*;
 public class Robot extends TimedRobot {
 
 	private static DriveTrain     driveTrain;// Arcade Drive
-	private static Camera         camera;// USB camera, designed to work with the Lifecam HD-3000
+	private static Camera         camera;    // USB camera, designed to work with the Lifecam HD-3000
 	private static XboxController controller;// Compatable with the F310
 
 
