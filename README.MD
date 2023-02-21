@@ -12,6 +12,6 @@ Four [CIM motors](https://www.andymark.com/products/2-5-in-cim-motor?via=Z2lkOi8
 ## Hardware
 Built on the [AndyMark 6 wheel drop center drive base](https://www.andymark.com/products/am14u5-6-wheel-drop-center-robot-drive-base-first-kit-of-parts-chassis) in the long configuration.
 ## Control Scheme
-Controlled with the [logitech F310](https://www.andymark.com/products/logitech-gamepad-f310?via=Z2lkOi8vYW5keW1hcmsvV29ya2FyZWE6Ok5hdmlnYXRpb246OlNlYXJjaFJlc3VsdHMvJTdCJTIyYnV0dG9uJTIyJTNBJTIyc2VhcmNoJTIyJTJDJTIycSUyMiUzQSUyMmxvZ2l0ZWNoK2YzMTAlMjIlMkMlMjJ1dGY4JTIyJTNBJTIyJUUyJTlDJTkzJTIyJTdE) controller on port 0.
+Controlled with the [logitech F310](https://www.andymark.com/products/logitech-gamepad-f310?via=Z2lkOi8vYW5keW1hcmsvV29ya2FyZWE6Ok5hdmlnYXRpb246OlNlYXJjaFJlc3VsdHMvJTdCJTIyYnV0dG9uJTIyJTNBJTIyc2VhcmNoJTIyJTJDJTIycSUyMiUzQSUyMmxvZ2l0ZWNoK2YzMTAlMjIlMkMlMjJ1dGY4JTIyJTNBJTIyJUUyJTlDJTkzJTIyJTdE) controller.
 - Left stick Y-axis  -- Drive speed
 - Right stick X-axis -- Drive rotation
