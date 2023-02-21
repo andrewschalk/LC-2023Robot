@@ -106,13 +106,13 @@ public class DriveTrain {
 		}
 		else{
 			tempTime  = myDate.getTime();
-			// 6/275 is ratio to convert from gforce miliseconds to miles per hour
-    	dXSpeed   = (tempTime - speedTime) * accelerometer.getX() * (6 / 275);
-    	dYSpeed   = (tempTime - speedTime) * accelerometer.getY() * (6 / 275);
-    	estXSpeed = estXSpeed + dXSpeed;// Add the change in speed to the last speed
-    	estYSpeed = estYSpeed + dYSpeed;
-    	speed     = Math.sqrt((estXSpeed * estXSpeed) + (estYSpeed * estYSpeed));// a^2+b^2=c^2
-    	speedTime = tempTime;
+			// 6/275 is ratio to convert from gforce milliseconds to miles per hour
+    		dXSpeed   = (tempTime - speedTime) * accelerometer.getX() * (6 / 275);
+    		dYSpeed   = (tempTime - speedTime) * accelerometer.getY() * (6 / 275);
+    		estXSpeed = estXSpeed + dXSpeed;// Add the change in speed to the last speed
+    		estYSpeed = estYSpeed + dYSpeed;
+    		speed     = Math.sqrt((estXSpeed * estXSpeed) + (estYSpeed * estYSpeed));// a^2+b^2=c^2
+    		speedTime = tempTime;
 		}
 		return speed;
 	}
