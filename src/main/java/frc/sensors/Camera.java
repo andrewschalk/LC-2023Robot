@@ -16,7 +16,7 @@ public class Camera {
 
 	/**
 	 * Contains a thread that runs a USB camera. Designed for the Lifecam HD-3000.
-	 * However, this will likely plug and play with all frc legal usb cameras.
+	 * However, this will likely plug and play with frc legal usb cameras.
 	 * Output stream viewable on shuffleboard.(the stream must be selected, see WPI for camera streams on shuffleboard)
 	 * FIXME Find a way to run the camera without creating a new thread. This seems unnecessary and resource intensive.
 	 */
