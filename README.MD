@@ -1,4 +1,4 @@
-# Robotics Engineering Club Robot test
+# Robotics Engineering Club Robot
 The Lewis and Clark Robotics Engineering Club robot. Built on FIRST Robotics Competition systems. Controlled by the logitech F310 controller connected to a laptop as the base station. Laptop communicates to robot over 5GHz Wi-fi. A USB camera transmits a video feed to be viewed by the operator.
 ## Architecture
 The robot runs on the systems used with the FIRST Robotics Competition. Uses [WPILib v.2023](https://docs.wpilib.org/en/stable/).
