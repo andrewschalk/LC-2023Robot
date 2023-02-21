@@ -11,8 +11,8 @@ import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
 
 public class Camera {
-	private Thread    visionThread;// Thread containing the CameraServer
-	private UsbCamera camera;
+private Thread    visionThread;// Thread containing the CameraServer
+private UsbCamera camera;
 
 	/**
 	 * Contains a thread that runs a USB camera. Designed for the Lifecam HD-3000.
