@@ -1,5 +1,5 @@
 # Robotics Engineering Club Robot
-The Lewis and Clark Robotics Engineering Club robot. Utilizes arcade drive train. Controlled by the logitech F310 controllerconnected to a laptop as the base station. A USB camera transmits a video feed to be viewed by the operator.
+The Lewis and Clark Robotics Engineering Club robot. Utilizes arcade drive train. Controlled by the logitech F310 controller connected to a laptop as the base station. Laptop communicates to robot over 5GHz Wi-fi. A USB camera transmits a video feed to be viewed by the operator.
 ## Architecture
 The robot runs on the systems used with the FIRST Robotics Competition. Uses [WPILib](https://docs.wpilib.org/en/stable/).
 ## Electronics
