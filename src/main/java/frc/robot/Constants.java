@@ -16,4 +16,7 @@ public final class Constants {
     public static final int armBackLimitDIO = 1;
     public static final int armEncoderADIO = 2;
     public static final int armEncoderBDIO = 3;
+
+    //Input device ports
+    public static final int f310Port = 0;
 }
