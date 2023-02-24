@@ -3,24 +3,25 @@ package frc.subsystems;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.Encoder;
+import frc.robot.Constants;
 
 public class Arm {
     
-    private Spark motor;// This is the spark on channel zero. Controls rotation of the arm.
+    private Spark        motor;// This is the spark on channel zero. Controls rotation of the arm.
     private DigitalInput forwardLimit;// Limit switch on front of robot
     private DigitalInput backLimit;// Limit switch on back of robot
-    private double position;// Angular position of arm in degrees, forward is zero
-    private Encoder encoder;
+    private double       position;// Angular position of arm in degrees, forward is zero
+    private Encoder      encoder;
 
 
     /**
      * The arm subsystem on the robot. Contains a cim motor on a Spark and two limit switches.
      */
     public Arm() {
-        motor        = new Spark(0);
-        forwardLimit = new DigitalInput(0);
-        backLimit    = new DigitalInput(1);
-        encoder      = new Encoder(2, 3);
+        motor        = new Spark(Constants.armMotorPWM);
+        forwardLimit = new DigitalInput(Constants.armForwardLimitDIO);
+        backLimit    = new DigitalInput(Constants.armBackLimitDIO);
+        encoder      = new Encoder(Constants.armEncoderADIO, Constants.armEncoderADIO);
     }
 
     /**

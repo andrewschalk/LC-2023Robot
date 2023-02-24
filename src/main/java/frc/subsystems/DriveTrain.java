@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.drive.*;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import java.util.Date;
 import edu.wpi.first.wpilibj.*;
+import frc.robot.Constants;
 
 /**
  * An arcade drive drivetrain class. Contains 4 VictorSPX motor controllers on CANID 0-3.
@@ -45,11 +46,11 @@ public class DriveTrain {
 	 * Right Front  2
 	 * Left Back    3
 	 */
-    victorLF  = new WPI_VictorSPX(0);
-    victorLB  = new WPI_VictorSPX(1);
+    victorLF  = new WPI_VictorSPX(Constants.frontLeftDriveMotorCAN);
+    victorLB  = new WPI_VictorSPX(Constants.backLeftDriveMotorCAN);
     rightSide = new MotorControllerGroup(victorLF, victorLB);
-    victorRF  = new WPI_VictorSPX(2);
-    victorRB  = new WPI_VictorSPX(3);
+    victorRF  = new WPI_VictorSPX(Constants.frontRightDriveMotorCAN);
+    victorRB  = new WPI_VictorSPX(Constants.backRightDriveMotorCAN);
     leftSide  = new MotorControllerGroup(victorRF, victorRB);
 
     differentialDrive = new DifferentialDrive(rightSide, leftSide);
