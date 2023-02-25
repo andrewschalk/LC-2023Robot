@@ -6,12 +6,10 @@ import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.*;
 
-public class Arm extends SubsystemBase{
+public class Arm extends SubsystemBase {
     
   private Spark        motor;// Controls rotation of the arm.
   private DigitalInput forwardLimit;// Limit switch on front of robot
-  private DigitalInput backLimit;// Limit switch on back of robot
-  private double       position;// Angular position of arm in degrees, forward is zero
   private Encoder      encoder;// FIXME find out what type of encoder this actually will be
 
 
@@ -21,8 +19,9 @@ public class Arm extends SubsystemBase{
   public Arm() {
     motor        = new Spark(Constants.armMotorPWM);
     forwardLimit = new DigitalInput(Constants.armForwardLimitDIO);
-    backLimit    = new DigitalInput(Constants.armBackLimitDIO);
     encoder      = new Encoder(Constants.armEncoderADIO, Constants.armEncoderADIO);
+
+		encoder.setDistancePerPulse(360/256);// FIXME Find out the actual pulse per rev
   }
 
   /**
@@ -31,23 +30,63 @@ public class Arm extends SubsystemBase{
    * @param speed The speed to run the motor at. Value range -1 to 1.
    * @return The speed that the arm was just set to. Will return zero if one of the limit switches is activated
    */
-  public double setSpeed(double speed) {
-    // If either limit switch is activated, stop motor
-    if(forwardLimit.get()||backLimit.get()) {
-      speed = 0;
+  public void setSpeed(double speed) {
 
-      // Position is now known, lets set its position.
-      if(forwardLimit.get()) {
-        position = 0;
-        encoder.reset();
-      }
-      else {
-        position = 180;
-      }
-    }
-    motor.set(speed);
-    return speed;
+		Commands.startEnd(
+			// Start by moving motor backwards
+			() -> motor.set(speed),
+			// End by stopping motor
+			() -> motor.set(0),
+    	this)
+			.until(()-> {
+				// If arm hits limits, interupt, otherwise keep going
+				if(forwardLimit.get()||encoder.get()==180)
+					return true;
+				return false;
+			});
   }
+
+	/**
+	 * Moves the arm until it reaches the given position.
+	 * @param position The angular position to set the arm. Values range from 0 to 180.
+	 */
+	public void setPosition(double position) throws IndexOutOfBoundsException{
+		if(position<0||position>180) {
+			throw new IndexOutOfBoundsException("Encoder angular position must be within {0,180}");
+		}
+
+		// Move arm backwards towards given position
+		if(encoder.get()>position) {
+		Commands.startEnd(
+			// Start by moving motor backwards
+			() -> motor.set(-.5),
+			// End by stopping motor
+			() -> motor.set(0),
+    	this)
+			.until(()-> {
+				// If arm has reached its goal, interupt, otherwise keep going
+				if(encoder.get()<=position)
+					return true;
+				return false;
+			});
+		}
+
+		// Move arm forwards towards given position
+		if(encoder.get()<position) {
+			Commands.startEnd(
+				// Start by moving motor forwards
+				() -> motor.set(.5),
+				// End by stopping motor
+				() -> motor.set(0),
+				this)
+				.until(()-> {
+					// If arm has reached its goal, interupt, otherwise keep going
+					if(encoder.get()>=position)
+						return true;
+					return false;
+				});
+			}
+	}
 
   /**
    * Logs the state of all subcomponents to the console.
@@ -55,9 +94,8 @@ public class Arm extends SubsystemBase{
   public void log() {
     System.out.println("Arm Subcomponent Values");
     System.out.println("Forward Limit Switch: " + forwardLimit.get());
-    System.out.println("Back Limit Switch: " + backLimit.get());
     System.out.println("Motor Speed: "+ motor.get());
-    System.out.println("Position: "+ position);
+    System.out.println("Position: "+ encoder.get());
   }
 
   /**
@@ -65,14 +103,13 @@ public class Arm extends SubsystemBase{
    */
   public Command home() {
   	return Commands.startEnd(
-      // When called, set the motor speed to .5
+      // When called, begin arm move forward
       () -> motor.set(.5),
       // When the command is interupted, stop the arm moving and set home
       () -> {
 				motor.set(0);
 				encoder.reset();
 			},
-      // Require this subsystem
       this)
       // Interupt this command when the limit switch is hit
       .until(forwardLimit::get)
@@ -84,14 +121,10 @@ public class Arm extends SubsystemBase{
     return forwardLimit.get();
   }
 
-  public Boolean getBackLimit() {
-    return backLimit.get();
-  }
-
   /**
    * @return the arm position in degrees, forward is zero
    */
   public double getPosition() {
-    return position;
+    return encoder.get();
   }
 }
