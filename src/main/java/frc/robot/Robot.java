@@ -25,8 +25,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+		//subsystems
 		arm        = new Arm();
   	driveTrain = new DriveTrain();
+
+		// User input
 		controller = new Controller();// Controller port can be changed from driver station
   }
 

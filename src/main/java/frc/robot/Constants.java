@@ -1,5 +1,8 @@
 package frc.robot;
 
+/**
+ * Holds all the constants for the robot such as device ports and IDs, and physical constants.
+ */
 public final class Constants {
     
   //CAN IDs
@@ -13,9 +16,8 @@ public final class Constants {
 
   //DIO channels
   public static final int armForwardLimitDIO = 0;
-  public static final int armBackLimitDIO    = 1;
-  public static final int armEncoderADIO     = 2;
-  public static final int armEncoderBDIO     = 3;
+  public static final int armEncoderADIO     = 1;
+  public static final int armEncoderBDIO     = 2;
 
   //Input device ports
   public static final int f310Port = 0;

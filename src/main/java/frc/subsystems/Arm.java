@@ -48,6 +48,7 @@ public class Arm extends SubsystemBase {
 
 	/**
 	 * Moves the arm until it reaches the given position.
+	 * 
 	 * @param position The angular position to set the arm. Values range from 0 to 180.
 	 */
 	public void setPosition(double position) throws IndexOutOfBoundsException{
@@ -117,13 +118,12 @@ public class Arm extends SubsystemBase {
       .withTimeout(5);
   }
 
+	/** @return returns true if arm is at zero degrees */
   public Boolean getForwardLimit() {
     return forwardLimit.get();
   }
 
-  /**
-   * @return the arm position in degrees, forward is zero
-   */
+  /** @return the arm position in degrees, forward is zero */
   public double getPosition() {
     return encoder.get();
   }
