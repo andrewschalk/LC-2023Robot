@@ -20,10 +20,12 @@ public class Robot extends TimedRobot {
 	private static DriveTrain     driveTrain;// Arcade Drive
 	private static Camera         camera;// USB camera, designed to work with the Lifecam HD-3000
 	private static XboxController controller;// Compatable with the F310
+	private static Arm            arm;
 
 
   @Override
   public void teleopInit() {
+		arm        = new Arm();
   	driveTrain = new DriveTrain();
 		controller = new XboxController(Constants.f310Port);// Controller port can be changed from driver station
   }
@@ -35,15 +37,19 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Speed", driveTrain.estimateSpeed());
   }
 
-	public static Camera getCamera(){
+	public static Camera getCamera() {
 		return camera;
 	}
 
-	public static DriveTrain getDriveTrain(){
+	public static DriveTrain getDriveTrain() {
 		return driveTrain;
 	}
 	
-	public static XboxController getController(){
+	public static XboxController getController() {
 		return controller;
+	}
+
+	public static Arm getArm() {
+		return arm;
 	}
 }
