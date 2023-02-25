@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import java.util.Date;
 import edu.wpi.first.wpilibj.*;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.*;
 
 /**
  * An arcade drive drivetrain class. Contains 4 VictorSPX motor controllers on CANID 0-3.
  * Also contains the onboard accelerometer from the roborio, used for calculating speed.
  */
-public class DriveTrain {
+public class DriveTrain extends SubsystemBase{
 
   private WPI_VictorSPX        victorLF;
   private WPI_VictorSPX        victorLB;
@@ -38,14 +39,6 @@ public class DriveTrain {
 	private Date   myDate;
 
   public DriveTrain() {
-	/*
-	 * Name       CANID
-	 * ----------------
-	 * Left Front   0
-	 * Left Back    1
-	 * Right Front  2
-	 * Left Back    3
-	 */
     victorLF  = new WPI_VictorSPX(Constants.frontLeftDriveMotorCAN);
     victorLB  = new WPI_VictorSPX(Constants.backLeftDriveMotorCAN);
     rightSide = new MotorControllerGroup(victorLF, victorLB);

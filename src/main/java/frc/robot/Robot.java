@@ -11,9 +11,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import frc.subsystems.*;
 import frc.sensors.*;
+import edu.wpi.first.wpilibj2.command.*;
 
 public class Robot extends TimedRobot {
 
@@ -32,8 +32,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    driveTrain.arcadeDrive(
-		controller.getLeftY(), controller.getRightX());// Set speed and rotation of drive train respectively
+		// Set speed and rotation of drive train respectively
+		new RunCommand(() -> driveTrain.arcadeDrive(
+    controller.getLeftY(),
+    controller.getRightX()),
+    driveTrain);
+
 		SmartDashboard.putNumber("Speed", driveTrain.estimateSpeed());
   }
 
