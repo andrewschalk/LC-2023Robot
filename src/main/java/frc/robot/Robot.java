@@ -17,17 +17,17 @@ import frc.sensors.*;
 
 public class Robot extends TimedRobot {
 
-	private static DriveTrain     driveTrain;// Arcade Drive
-	private static Camera         camera;// USB camera, designed to work with the Lifecam HD-3000
-	private static XboxController controller;// Compatable with the F310
-	private static Arm            arm;
+	private static DriveTrain driveTrain;// Arcade Drive
+	private static Camera     camera;// USB camera, designed to work with the Lifecam HD-3000
+	private static Controller controller;// Compatable with the F310
+	private static Arm        arm;
 
 
   @Override
   public void teleopInit() {
 		arm        = new Arm();
   	driveTrain = new DriveTrain();
-		controller = new XboxController(Constants.f310Port);// Controller port can be changed from driver station
+		controller = new Controller();// Controller port can be changed from driver station
   }
 
   @Override
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
 		return driveTrain;
 	}
 	
-	public static XboxController getController() {
+	public static Controller getController() {
 		return controller;
 	}
 
