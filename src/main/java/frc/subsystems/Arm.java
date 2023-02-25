@@ -67,8 +67,11 @@ public class Arm extends SubsystemBase{
   	return Commands.startEnd(
       // When called, set the motor speed to .5
       () -> motor.set(.5),
-      // When the command is interupted, stop the arm moving
-      () -> motor.set(0),
+      // When the command is interupted, stop the arm moving and set home
+      () -> {
+				motor.set(0);
+				encoder.reset();
+			},
       // Require this subsystem
       this)
       // Interupt this command when the limit switch is hit
