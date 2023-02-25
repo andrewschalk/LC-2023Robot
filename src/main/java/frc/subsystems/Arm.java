@@ -10,7 +10,7 @@ public class Arm extends SubsystemBase {
     
   private Spark        motor;// Controls rotation of the arm.
   private DigitalInput forwardLimit;// Limit switch on front of robot
-  private Encoder      encoder;// FIXME find out what type of encoder this actually will be
+  private Encoder      encoder;// HRPG-ASCA #16c encoder
 
 
   /**
@@ -21,7 +21,7 @@ public class Arm extends SubsystemBase {
     forwardLimit = new DigitalInput(Constants.armForwardLimitDIO);
     encoder      = new Encoder(Constants.armEncoderADIO, Constants.armEncoderADIO);
 
-		encoder.setDistancePerPulse(360/256);// FIXME Find out the actual pulse per rev
+		encoder.setDistancePerPulse(360/Constants.CountPerRev);// 360 degrees per rev
   }
 
   /**
@@ -40,7 +40,7 @@ public class Arm extends SubsystemBase {
     	this)
 			.until(()-> {
 				// If arm hits limits, interupt, otherwise keep going
-				if(forwardLimit.get()||encoder.get()==180)
+				if(forwardLimit.get()||encoder.get()>=180)
 					return true;
 				return false;
 			});
