@@ -6,6 +6,7 @@ public class Controller {
   private static CommandXboxController controller = new CommandXboxController(Constants.f310Port);
 
   public Controller() {
+		// X button homes arm
     controller.x().onTrue(Robot.getArm().home());
   }
 
