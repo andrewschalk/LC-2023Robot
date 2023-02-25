@@ -4,8 +4,9 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.*;
 
-public class Arm {
+public class Arm extends SubsystemBase{
     
     private Spark        motor;// Controls rotation of the arm.
     private DigitalInput forwardLimit;// Limit switch on front of robot
@@ -59,13 +60,18 @@ public class Arm {
         System.out.println("Position: "+ position);
     }
 
-    public boolean home() {
-        if(!forwardLimit.get()) {
-            motor.set(.5);
-            return false;
-        }
-        motor.set(0);
-        return true;
+    public void home() {
+        Commands.startEnd(
+            // When called, set the motor speed to .5
+            () -> motor.set(.5),
+            // When the command is interupted, stop the arm moving
+            () -> motor.set(0),
+            // Require this substem
+            this)
+            // Interupt this command when the limit switch is hit
+            .until(forwardLimit::get)
+            // In case of something wrong with the limit switch, timeout after 5 seconds
+            .withTimeout(5);
     }
 
     public Boolean getForwardLimit() {
