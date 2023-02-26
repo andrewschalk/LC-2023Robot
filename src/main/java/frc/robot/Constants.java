@@ -26,7 +26,7 @@ public final class Constants {
   // Input device ports
   public static final int f310Port = 0;
 
-  // Encoder
+  // Encoder constants
   public static final int CountPerRev = 120;// HRPG-ASCA #16c encoder count per rev
 
   // Physical constants

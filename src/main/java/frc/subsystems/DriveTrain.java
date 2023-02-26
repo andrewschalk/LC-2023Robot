@@ -94,7 +94,9 @@ public class DriveTrain extends SubsystemBase {
  	 * Estimates the speed using data from the accelerometers onboard the roborio.
  	 * Utilizes numerical integration. Extremely imprecise and subject to significant drift.
 	 * Should estimate zero speed when robot stopped.
+	 * 
  	 * @return The speed estimated from the roboRIO accelerometer.
+	 * FIXME make this a command
  	 */
 	public double estimateSpeed(){	
 		/*
@@ -122,5 +124,17 @@ public class DriveTrain extends SubsystemBase {
 
 	public static Accelerometer getAccelerometer(){
 		return accelerometer;
+	}
+
+	/**
+   * Logs the state of all subcomponents to the console.
+   */
+	public void log() {
+		System.out.println("   Drive Train Values");
+		System.out.println("------------------------");
+    System.out.println("Accelorometer X Raw: " + accelerometer.getX());
+    System.out.println("Accelorometer Y Raw: " + accelerometer.getY());
+    System.out.println("Estimated speed: " + estimateSpeed());
+		System.out.println("________________________");
 	}
 }

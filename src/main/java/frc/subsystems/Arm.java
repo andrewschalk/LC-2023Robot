@@ -94,9 +94,11 @@ public class Arm extends SubsystemBase {
    */
   public void log() {
     System.out.println("Arm Subcomponent Values");
+		System.out.println("------------------------");
     System.out.println("Forward Limit Switch: " + forwardLimit.get());
     System.out.println("Motor Speed: "+ motor.get());
     System.out.println("Position: "+ encoder.get());
+		System.out.println("________________________");
   }
 
   /**
