@@ -48,8 +48,10 @@ public class Arm extends SubsystemBase {
 
 	/**
 	 * Moves the arm until it reaches the given position.
+	 * Uses a simple setpoint feedforward method.
 	 * 
 	 * @param position The angular position to set the arm. Values range from 0 to 180.
+	 * @throws IndexOutOfBoundsException If given position is outside {0,180}.
 	 */
 	public void setPosition(double position) throws IndexOutOfBoundsException{
 		if(position<0||position>180) {
@@ -102,7 +104,8 @@ public class Arm extends SubsystemBase {
   }
 
   /**
-   * Homes the robot arm. Moves the arm forward until it hits the limit switch, then stops.
+   * Homes the robot arm using a simple setpoint feedforward method. 
+	 * Moves the arm forward until it hits the limit switch, then stops.
    */
   public Command home() {
   	return Commands.startEnd(
