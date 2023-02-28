@@ -92,7 +92,7 @@ public class Arm extends SubsystemBase {
 	}
 
   /**
-   * Logs the state of all subcomponents to the console.
+   * Logs the state of relavant values to the console.
    */
   public void log() {
     System.out.println("Arm Subcomponent Values");
