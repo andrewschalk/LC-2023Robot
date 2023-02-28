@@ -24,12 +24,15 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+		System.out.println("here");
   	driveTrain = new DriveTrain();
 		controller = new XboxController(Constants.f310Port);// Controller port can be changed from driver station
   }
 
   @Override
   public void teleopPeriodic() {
+		System.out.println("Left Y" +controller.getLeftY());
+		System.out.println("Right X" +controller.getRightX());
     driveTrain.arcadeDrive(
 		controller.getLeftY(), controller.getRightX());// Set speed and rotation of drive train respectively
 		SmartDashboard.putNumber("Speed", driveTrain.estimateSpeed());

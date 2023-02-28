@@ -3,10 +3,10 @@ package frc.robot;
 public final class Constants {
     
     //CAN IDs
-    public static final int backLeftDriveMotorCAN = 0;
-    public static final int frontLeftDriveMotorCAN = 1;
-    public static final int backRightDriveMotorCAN = 2;
-    public static final int frontRightDriveMotorCAN = 3;
+    public static final int backLeftDriveMotorCAN = 1;
+    public static final int frontLeftDriveMotorCAN = 2;
+    public static final int backRightDriveMotorCAN = 3;
+    public static final int frontRightDriveMotorCAN = 4;
 
     //PWM channels
     public static final int armMotorPWM = 0;

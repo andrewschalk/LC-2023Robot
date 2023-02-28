@@ -38,14 +38,6 @@ public class DriveTrain {
 	private Date   myDate;
 
   public DriveTrain() {
-	/*
-	 * Name       CANID
-	 * ----------------
-	 * Left Front   0
-	 * Left Back    1
-	 * Right Front  2
-	 * Left Back    3
-	 */
     victorLF  = new WPI_VictorSPX(Constants.frontLeftDriveMotorCAN);
     victorLB  = new WPI_VictorSPX(Constants.backLeftDriveMotorCAN);
     rightSide = new MotorControllerGroup(victorLF, victorLB);
