@@ -44,6 +44,15 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Speed", driveTrain.estimateSpeed());
   }
 
+	/**
+   * Logs the state of all subcomponents to the console.
+   */
+	public void log() {
+		arm.log();
+		driveTrain.log();
+		controller.log();
+	}
+
 	public static Camera getCamera() {
 		return camera;
 	}

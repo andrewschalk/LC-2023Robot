@@ -7,7 +7,7 @@ public class Controller {
   private static CommandXboxController controller = new CommandXboxController(Constants.f310Port);// Compatable with f310
 
 	private SlewRateLimiter rightXFilter = new SlewRateLimiter(0.5);
-	private SlewRateLimiter leftYFilter = new SlewRateLimiter(0.5);
+	private SlewRateLimiter leftYFilter  = new SlewRateLimiter(0.5);
 	/**
 	 * An f310 controller
 	 */
@@ -28,5 +28,13 @@ public class Controller {
 	 */
 	public double getLeftY() {
 		return leftYFilter.calculate(controller.getLeftY());
+	}
+
+	public void log() {
+		System.out.println("Controller Values");
+		System.out.println("------------------------");
+    System.out.println("Right x-axis: " + controller.getRightX());
+    System.out.println("Left y-axis: "+ controller.getLeftY());
+		System.out.println("________________________");
 	}
 }
