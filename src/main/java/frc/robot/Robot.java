@@ -21,18 +21,19 @@ public class Robot extends TimedRobot {
 	private static Camera         camera;// USB camera, designed to work with the Lifecam HD-3000
 	private static XboxController controller;// Compatable with the F310
 
-
+	@Override
+	public void robotInit() {
+		driveTrain = new DriveTrain();
+		controller = new XboxController(Constants.f310Port);// Controller port can be changed from driver station
+		super.robotInit();
+	}
   @Override
   public void teleopInit() {
-		System.out.println("here");
-  	driveTrain = new DriveTrain();
-		controller = new XboxController(Constants.f310Port);// Controller port can be changed from driver station
+  	
   }
 
   @Override
   public void teleopPeriodic() {
-		System.out.println("Left Y" +controller.getLeftY());
-		System.out.println("Right X" +controller.getRightX());
     driveTrain.arcadeDrive(
 		controller.getLeftY(), controller.getRightX());// Set speed and rotation of drive train respectively
 		SmartDashboard.putNumber("Speed", driveTrain.estimateSpeed());
