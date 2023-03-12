@@ -1,12 +1,3 @@
-/**
- * Author: Andrew Schalk
- * Date: 2/20/2023
- * Description: The first program written for control of the robot. Designed for 
- * 4 Victor SPX motor controllers on drive train. Utilizes arcade drive drive 
- * train. Controlled by the logitech F310 controller on port 0. Left stick 
- * Y-axis controls speed, and right stick X-axis controls turning. A USB camera
- * transmits a video feed to the shuffleboard.
- */
 package frc.robot;
 
 import edu.wpi.first.wpilibj.*;

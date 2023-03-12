@@ -59,10 +59,10 @@ public class DriveTrain extends SubsystemBase {
     victorRB.configFactoryDefault();
 
     // Sets motors so that positive is robot forward i.e. green lights on controllers
-    victorLF.setInverted(false);
-    victorLB.setInverted(false);
-    victorRF.setInverted(true);
-    victorRB.setInverted(true);
+    victorLF.setInverted(true);
+    victorLB.setInverted(true);
+    victorRF.setInverted(false);
+    victorRB.setInverted(false);
 
 		// Initialize encoders
 		leftEncoder  = new Encoder(Constants.leftDriveEncoderADIO, Constants.leftDriveEncoderBDIO);
