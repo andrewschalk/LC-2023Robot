@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import java.util.Date;
 import edu.wpi.first.wpilibj.*;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.*;
 
 /**
  * An arcade drive drivetrain class. Contains 4 VictorSPX motor controllers on CANID 0-3.
  * Also contains the onboard accelerometer from the roborio, used for calculating speed.
  */
-public class DriveTrain {
+public class DriveTrain extends SubsystemBase {
 
   private WPI_VictorSPX        victorLF;
   private WPI_VictorSPX        victorLB;
@@ -26,6 +27,10 @@ public class DriveTrain {
   private static DifferentialDrive differentialDrive;
 
 	private static Accelerometer accelerometer;// Roborio accelerometer
+
+	private Encoder leftEncoder;// HRPG-ASCA #16c encoder
+	private Encoder rightEncoder;// HRPG-ASCA #16c encoder
+
 
 	//Speed estimation variables
 	private double estXSpeed = 0;
@@ -54,10 +59,16 @@ public class DriveTrain {
     victorRB.configFactoryDefault();
 
     // Sets motors so that positive is robot forward i.e. green lights on controllers
-    victorLF.setInverted(false);
-    victorLB.setInverted(false);
-    victorRF.setInverted(true);
-    victorRB.setInverted(true);
+    victorLF.setInverted(true);
+    victorLB.setInverted(true);
+    victorRF.setInverted(false);
+    victorRB.setInverted(false);
+
+		// Initialize encoders
+		leftEncoder  = new Encoder(Constants.leftDriveEncoderADIO, Constants.leftDriveEncoderBDIO);
+		rightEncoder = new Encoder(Constants.rightDriveEncoderADIO, Constants.rightDriveEncoderBDIO);
+		leftEncoder.setDistancePerPulse(Constants.wheelCircumference/256);// Set encoder distance equal to the distance drove
+		rightEncoder.setDistancePerPulse(Constants.wheelCircumference/256);
 
     /*
      * WPI assumes right side of drivetrain is opposite. Since we already inverted
@@ -83,21 +94,22 @@ public class DriveTrain {
  	 * Estimates the speed using data from the accelerometers onboard the roborio.
  	 * Utilizes numerical integration. Extremely imprecise and subject to significant drift.
 	 * Should estimate zero speed when robot stopped.
- 	 * @return The estimated speed.
+	 * 
+ 	 * @return The speed estimated from the roboRIO accelerometer.
+	 * FIXME make this a command
  	 */
-	public double estimateSpeed(){
-				
+	public double estimateSpeed(){	
 		/*
 		 * If robot not accelerating and joysticks not commanding movement, assume zero speed.
 		 * This should help correct drift as it should zero each time the robot stops.
 		 * FIXME if autonomous is added. May assume zero speed in auto when non-zero speed.
 		 */
 		if(Robot.getController().getLeftY()==0&&Robot.getController().getRightX()==0&&accelerometer.getX()==0&&
-			accelerometer.getY()==0){
+			accelerometer.getY()==0) {
 			speed = 0;
 			return speed;
 		}
-		else{
+		else {
 			tempTime  = myDate.getTime();
 			// 6/275 is ratio to convert from gforce milliseconds to miles per hour
     		dXSpeed   = (tempTime - speedTime) * accelerometer.getX() * (6 / 275);
@@ -112,5 +124,17 @@ public class DriveTrain {
 
 	public static Accelerometer getAccelerometer(){
 		return accelerometer;
+	}
+
+	/**
+   * Logs the state of relavant values to the console.
+   */
+	public void log() {
+		System.out.println("   Drive Train Values");
+		System.out.println("------------------------");
+    System.out.println("Accelorometer X Raw: " + accelerometer.getX());
+    System.out.println("Accelorometer Y Raw: " + accelerometer.getY());
+    System.out.println("Estimated speed: " + estimateSpeed());
+		System.out.println("________________________");
 	}
 }
