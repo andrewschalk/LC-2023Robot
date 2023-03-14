@@ -13,7 +13,12 @@ public class Robot extends TimedRobot {
 	private static Controller controller;// Compatable with the F310
 	private static Arm        arm;
 
-
+	@Override
+	public void robotInit() {
+		driveTrain = new DriveTrain();
+		controller = new XboxController(Constants.f310Port);// Controller port can be changed from driver station
+		super.robotInit();
+	}
   @Override
   public void teleopInit() {
 		//subsystems
